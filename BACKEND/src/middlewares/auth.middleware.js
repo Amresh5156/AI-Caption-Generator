@@ -14,20 +14,15 @@ async function authMiddleware(req, res, next){
     try {
         const decode = jwt.verify(token, process.env.JWT_SECRET)
         const user = await userModel.findOne({
-            _id: decode.id
+            id: decode._id
         })
 
-        if (!user) {
-            return res.status(401).json({
-                message: "User not found, please login again"
-            })
-        }
-
+        //jo aage se req aayegi(createPostController) se usme user ki demand aayegi usme user ki detail jayegi
         req.user = user
         next()
     }
     catch(err){
-        return res.status(401).json({
+        res.status(401).json({
             message:"Invalid credentials, please login again"
         })
     }

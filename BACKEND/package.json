@@ -1,8 +1,6 @@
 {
   "name": "authentication",
   "version": "1.0.0",
-  "description": "AI Caption Generator - Backend",
-  "repository": "https://github.com/Amresh5156/AI-Caption-Generator",
   "main": "index.js",
   "scripts": {
     "start": "node server.js",

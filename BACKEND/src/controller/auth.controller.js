@@ -19,9 +19,9 @@ async function registerController(req, res){
 
     const token = jwt.sign({id:user._id}, process.env.JWT_SECRET);
 
-    res.cookie("token", token, { sameSite: 'lax', httpOnly: false })
-    const safe = { _id: user._id, username: user.username };
-    return res.status(201).json({message:"user register successfully", user: safe})
+    res.cookie("token", token)
+
+    return res.status(201).json({message:"user register successfully", user})
 }
 
 async function loginController(req, res){
@@ -41,11 +41,11 @@ async function loginController(req, res){
 
     const token = jwt.sign({id:isUser._id}, process.env.JWT_SECRET);
 
-    res.cookie("token", token, { sameSite: 'lax', httpOnly: false })
-    const safe = { _id: isUser._id, username: isUser.username };
+    res.cookie("token", token)
+
     res.status(200).json({
         message:"user login successfully",
-        isUser: safe
+        isUser
     })
 }
 
@@ -76,15 +76,4 @@ async function userController(req, res){
 }
 
 
-async function logoutController(req, res) {
-    res.clearCookie('token');
-    res.status(200).json({ message: 'Logged out successfully' });
-}
-
-async function meController(req, res) {
-    const u = req.user?.toObject ? req.user.toObject() : req.user;
-    if (u && u.password) delete u.password;
-    res.status(200).json({ user: u });
-}
-
-module.exports = { registerController, loginController, userController, logoutController, meController }
+module.exports = {registerController, loginController, userController}
