@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:3000',
+        target: 'https://ai-caption-generator-6dnx.onrender.com',
         changeOrigin: true,
       }
     }
