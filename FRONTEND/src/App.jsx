@@ -101,7 +101,6 @@ const App = () => {
         </header>
 
         <div className="content">
-          {/* Image Upload Section */}
           <div className="upload-section">
             {!imagePreview ? (
               <div
@@ -148,24 +147,25 @@ const App = () => {
             )}
           </div>
 
-          {/* Caption Type Selection */}
           <div className="caption-type-section">
             <h2 className="section-title">Choose Caption Style</h2>
-            <div className="caption-type-grid">
+
+            <div className="caption-type-container">
               {captionTypes.map((type) => (
                 <button
                   key={type.value}
-                  className={`caption-type-btn ${captionType === type.value ? 'active' : ''}`}
+                  className={`caption-pill ${
+                    captionType === type.value ? 'active' : ''
+                  }`}
                   onClick={() => setCaptionType(type.value)}
                 >
-                  <span className="caption-type-icon">{type.icon}</span>
-                  <span className="caption-type-label">{type.label}</span>
+                  <span className="icon">{type.icon}</span>
+                  <span className="label">{type.label}</span>
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Generate Button */}
           <button
             className={`generate-btn ${isGenerating ? 'generating' : ''}`}
             onClick={handleGenerateCaption}
@@ -184,7 +184,6 @@ const App = () => {
             )}
           </button>
 
-          {/* Generated Caption Display */}
           {generatedCaption && (
             <div className="caption-result">
               <h3 className="result-title">Generated Caption</h3>
