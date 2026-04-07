@@ -65,8 +65,7 @@ const App = () => {
   
       const response = await axios.post(
         'https://ai-caption-generator-1-xjzy.onrender.com/api/post',
-        formData,
-        { withCredentials: true }
+        formData
       );
   
       setGeneratedCaption(response.data.caption);
