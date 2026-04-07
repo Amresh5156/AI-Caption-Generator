@@ -7,13 +7,9 @@ const path = require("path");
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
-app.use(
-  cors({
-    credentials: true // required for cookies/auth
-  })
-);
 
 app.use("/api/auth", authRoutes);
 app.use("/api/post", postRoutes);
